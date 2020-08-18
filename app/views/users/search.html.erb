@@ -1,0 +1,31 @@
+<%= @user.name %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Registries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Welcome message</th>
+      <th>Due date</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @registries.each do |registry| %>
+      <tr>
+        <td><%= registry.title %></td>
+        <td><%= registry.welcome_message %></td>
+        <td><%= registry.due_date %></td>
+        <td><%= registry.user %></td>
+        <td><%= link_to 'Show', registry %></td>
+        <td><%= link_to 'Edit', edit_registry_path(registry) %></td>
+        <td><%= link_to 'Destroy', registry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
