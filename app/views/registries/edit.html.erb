@@ -3,4 +3,4 @@
 <%= render 'form', registry: @registry %>
 
 <%= link_to 'Show', @registry %> |
-<%= link_to 'Back', registries_path %>
+<%= link_to 'Back', user_path(current_user.id) %>

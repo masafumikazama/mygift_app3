@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200818044950) do
+ActiveRecord::Schema.define(version: 20200821072853) do
+
+  create_table "charges", force: :cascade do |t|
+    t.text "message"
+    t.decimal "amount"
+    t.integer "customer_id"
+    t.integer "gift_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_charges_on_customer_id"
+    t.index ["gift_id"], name: "index_charges_on_gift_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "full_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "gifts", force: :cascade do |t|
     t.string "title"
@@ -20,6 +37,14 @@ ActiveRecord::Schema.define(version: 20200818044950) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["registry_id"], name: "index_gifts_on_registry_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "charge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["charge_id"], name: "index_messages_on_charge_id"
   end
 
   create_table "registries", force: :cascade do |t|

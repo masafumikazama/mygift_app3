@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :gifts
   resources :registries
+  resources :charges
   get 'users/show'
 
   root 'static_pages#top'

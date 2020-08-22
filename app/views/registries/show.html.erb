@@ -47,9 +47,7 @@
 
 <br>
 
-<%= link_to 'New Gift', new_gift_path %>
-
 
 <%= link_to "Set Gifts", new_gift_path %><br/>
 <%= link_to 'Edit', edit_registry_path(@registry) %> |
-<%= link_to 'Back', user_path %>
+<%= link_to 'Back', user_path(current_user.id) %>
