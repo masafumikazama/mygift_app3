@@ -40,6 +40,7 @@
         <td><%= link_to 'Show', gift %></td>
         <td><%= link_to 'Edit', edit_gift_path(gift) %></td>
         <td><%= link_to 'Destroy', gift, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Contribute", new_charge_path(gift.id) %></td>
       </tr>
     <% end %>
   </tbody>

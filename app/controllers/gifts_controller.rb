@@ -57,7 +57,7 @@ class GiftsController < ApplicationController
   def destroy
     @gift.destroy
     respond_to do |format|
-      format.html { redirect_to gifts_url, notice: 'Gift was successfully destroyed.' }
+      format.html { redirect_to user_path(current_user.id), notice: 'Gift was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

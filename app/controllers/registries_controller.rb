@@ -59,7 +59,7 @@ class RegistriesController < ApplicationController
   def destroy
     @registry.destroy
     respond_to do |format|
-      format.html { redirect_to registries_url, notice: 'Registry was successfully destroyed.' }
+      format.html { redirect_to user_path(current_user.id), notice: 'Registry was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

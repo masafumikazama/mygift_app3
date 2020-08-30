@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  
+  get   'charges/new/gifts/:id', to: 'charges#new', as: :new_charge
+  
   resources :gifts
   resources :registries
   resources :charges
+  
   get 'users/show'
 
   root 'static_pages#top'

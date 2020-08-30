@@ -1,3 +1,6 @@
+
+
+
 <%= form_tag charges_path do %>
   <article>
     <% if flash[:error].present? %>
@@ -6,13 +9,75 @@
       </div>
     <% end %>
     <label class="amount">
-      <span>Amount: $5.00</span>
+      <%= @gift.title %></br>
+      <span>Amount: $<%= @gift.target_price %></span>
     </label>
   </article>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="A month's subscription"
-          data-amount="500"
+          data-amount="100"
           data-locale="auto"></script>
 <% end %>
+
+
+
+<%= form_tag charges_path do %>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-amount="<%= @gift.target_price %>"
+    data-currency="usd"
+    data-name=<%= "contribute_to_#{@gift.title}" %>
+    data-email=<%= "#{current_user.email}" %>
+    data-label="contribution"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-allow-remember-me="false">
+  </script>
+  <%= label_tag :amount %>
+  <%= text_field_tag :amount %>
+<% end %>
+
+
+
+<%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
+
+<h1>課金サンプル</h1>
+
+<%= form_tag charges_path do %>
+  <label>金額</label>
+  <input type="number" class="form-control" name="amount" value="100">
+<% end %>
+<button id="checkout">課金する</button>
+
+<pre>
+<%= params %>
+</pre>
+
+<script>
+    var handler = StripeCheckout.configure({
+        key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+        locale: 'us',
+        name: "課金サンプルCheckout",
+        description: "クレジットカードを入力してください",
+        token: function (token) {
+            var form = document.forms[0];
+            //we will create element with this id in the next step
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+            form.submit();
+        }
+    });
+
+    document.getElementById('checkout').addEventListener('click', function(){
+        handler.open();
+    });
+
+    window.addEventListener('popstate', function () {
+        handler.close();
+    });
+</script>
