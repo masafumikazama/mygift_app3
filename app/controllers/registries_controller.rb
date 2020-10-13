@@ -63,6 +63,11 @@ class RegistriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def searched_registry
+    @registry = Registry.find(params[:id])
+    @gifts = @registry.gifts.all
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

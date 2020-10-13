@@ -1,25 +1,10 @@
-<h1>My Gift Regestry</h1>
 
-<%= link_to "Sign up", new_user_registration_path %><br/>
-<%= link_to "Log in", new_user_session_path %>
+<div class="center jumbotron">
+  <h1>My Gift Regestry</h1>
 
+   <%= link_to "Sign up", new_user_registration_path, class: "btn btn-lg btn-success" %><br/><br/>
+   <%= link_to "Log in", new_user_session_path, class: "btn btn-lg btn-primary" %><br/><br/>
+   <%= link_to "Find Registries", search_users_path, class: "btn btn-lg btn-danger" %>
+</div>
 
-<h1>User search</h1>
-<%= form_with url: search_users_path, method: :get, local: true do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit :search %>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  

@@ -1,6 +1,7 @@
-<h1>My page</h1>
+<h1>User Registries</h1>
+
 <div align="center">
-<h2><%= @user.name %></h2>
+<p><%= @user.name %></p>
 
 <table class = "table-bordered table-condensed">
   <thead>
@@ -18,14 +19,11 @@
         <td><%= registry.title %></td>
         <td><%= registry.welcome_message %></td>
         <td><%= registry.due_date %></td>
-        <td><%= link_to 'Show', registry %></td>
-        <td><%= link_to 'Edit', edit_registry_path(registry) %></td>
-        <td><%= link_to 'Destroy', registry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', searched_registry_path(registry.id) %></td>
       </tr>
     <% end %>
   </tbody>
 </table><br/>
 
-<%= link_to "Create Registry", new_registry_path %><br/>
-<%= link_to "Log out", destroy_user_session_path, method: :delete %>
+<%= link_to 'Back', :back %>
 </div>
